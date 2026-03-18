@@ -3,34 +3,34 @@ interface AltitudeBadgeProps {
   size?: "sm" | "md" | "lg";
 }
 
-const campConfig: Record<string, { color: string; glow: string; label: string }> = {
-  "BASE CAMP": { color: "#7A8899", glow: "rgba(122,136,153,0.2)", label: "BASE CAMP" },
-  "CAMP 1":    { color: "#3B82F6", glow: "rgba(59,130,246,0.25)",  label: "CAMP 1"    },
-  "CAMP 2":    { color: "#F97316", glow: "rgba(249,115,22,0.25)",  label: "CAMP 2"    },
-  "CAMP 3":    { color: "#F5C842", glow: "rgba(245,200,66,0.25)",  label: "CAMP 3"    },
-  "CAMP 4":    { color: "#A855F7", glow: "rgba(168,85,247,0.25)",  label: "CAMP 4"    },
-  "CUME":      { color: "#F5C842", glow: "rgba(245,200,66,0.35)",  label: "⛰ CUME"   },
+const campColors: Record<string, string> = {
+  "BASE CAMP": "#8B949E",
+  "CAMP 1": "#1F6FEB",
+  "CAMP 2": "#E57B3B",
+  "CAMP 3": "#E3B341",
+  "CAMP 4": "#9B59B6",
+  CUME: "#E3B341",
 };
 
 export function AltitudeBadge({ camp, size = "md" }: AltitudeBadgeProps) {
-  const config = campConfig[camp] ?? campConfig["BASE CAMP"];
+  const color = campColors[camp] || "#8B949E";
 
   const sizes = {
-    sm: "px-2 py-0.5 text-[10px]",
-    md: "px-2.5 py-1 text-xs",
-    lg: "px-3.5 py-1.5 text-sm",
+    sm: "px-2 py-0.5 text-xs",
+    md: "px-3 py-1 text-sm",
+    lg: "px-4 py-1.5 text-base",
   };
 
   return (
     <span
-      className={`inline-flex items-center font-bold uppercase tracking-widest rounded-lg font-heading ${sizes[size]}`}
+      className={`inline-flex items-center font-bold uppercase tracking-widest rounded-full ${sizes[size]}`}
       style={{
-        color: config.color,
-        background: `${config.glow}`,
-        border: `1px solid ${config.color}35`,
+        color,
+        background: `${color}15`,
+        border: `1px solid ${color}40`,
       }}
     >
-      {config.label}
+      {camp}
     </span>
   );
 }

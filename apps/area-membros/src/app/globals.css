@@ -10,10 +10,9 @@
   margin: 0;
 }
 
-html,
-body {
-  background-color: #080B10;
-  color: #EDF2F7;
+html, body {
+  background-color: #0A0A0A;
+  color: #E6EDF3;
   font-family: 'Inter', sans-serif;
 }
 
@@ -21,66 +20,13 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Sora', sans-serif;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #0E1117; }
-::-webkit-scrollbar-thumb { background: #1E2636; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #263040; }
-
-/* Selection */
-::selection { background: rgba(59, 130, 246, 0.3); color: #EDF2F7; }
-
-/* Smooth transitions for interactive elements */
-a, button { transition: all 0.2s ease; }
-
-/* Glow border utility */
-@layer utilities {
-  .border-glow-blue {
-    border-color: rgba(59, 130, 246, 0.5);
-    box-shadow: 0 0 12px rgba(59, 130, 246, 0.15), inset 0 0 12px rgba(59, 130, 246, 0.05);
-  }
-  .border-glow-gold {
-    border-color: rgba(245, 200, 66, 0.4);
-    box-shadow: 0 0 12px rgba(245, 200, 66, 0.15), inset 0 0 12px rgba(245, 200, 66, 0.05);
-  }
-  .border-glow-red {
-    border-color: rgba(255, 77, 79, 0.4);
-    box-shadow: 0 0 16px rgba(255, 77, 79, 0.15), inset 0 0 12px rgba(255, 77, 79, 0.05);
-  }
-  .glass {
-    background: rgba(19, 24, 35, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
-  .text-gradient-gold {
-    background: linear-gradient(135deg, #F5C842, #E8A600);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .text-gradient-blue {
-    background: linear-gradient(135deg, #60A5FA, #3B82F6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .shimmer-bg {
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.03) 25%,
-      rgba(255, 255, 255, 0.07) 50%,
-      rgba(255, 255, 255, 0.03) 75%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 2s linear infinite;
-  }
+::-webkit-scrollbar {
+  width: 6px;
 }
-
-/* Card hover lift */
-.card-hover {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+::-webkit-scrollbar-track {
+  background: #111318;
 }
-.card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+::-webkit-scrollbar-thumb {
+  background: #1C2028;
+  border-radius: 3px;
 }

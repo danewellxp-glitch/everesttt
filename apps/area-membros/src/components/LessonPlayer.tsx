@@ -1,5 +1,3 @@
-"use client";
-
 interface LessonPlayerProps {
   videoUrl?: string | null;
 }
@@ -7,11 +5,10 @@ interface LessonPlayerProps {
 export function LessonPlayer({ videoUrl }: LessonPlayerProps) {
   if (videoUrl) {
     return (
-      <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl"
-        style={{
-          paddingBottom: "56.25%",
-          border: "1px solid rgba(255,255,255,0.06)",
-        }}>
+      <div
+        className="relative w-full rounded-xl overflow-hidden"
+        style={{ paddingBottom: "56.25%" }}
+      >
         <iframe
           src={videoUrl}
           className="absolute inset-0 w-full h-full"
@@ -25,31 +22,19 @@ export function LessonPlayer({ videoUrl }: LessonPlayerProps) {
 
   return (
     <div
-      className="relative w-full rounded-2xl flex items-center justify-center"
+      className="relative w-full rounded-xl flex items-center justify-center"
       style={{
         paddingBottom: "56.25%",
-        background: "linear-gradient(135deg, #0E1117 0%, #131823 50%, #0E1117 100%)",
-        border: "1px solid rgba(255,255,255,0.05)",
+        background: "linear-gradient(135deg, #111318 0%, #1C2028 100%)",
+        border: "1px solid #1C2028",
       }}
     >
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-        {/* Glow ring */}
-        <div className="relative">
-          <div className="w-20 h-20 rounded-full flex items-center justify-center text-4xl"
-            style={{
-              background: "rgba(59,130,246,0.08)",
-              border: "1px solid rgba(59,130,246,0.2)",
-              boxShadow: "0 0 40px rgba(59,130,246,0.1)",
-            }}>
-            ⛰
-          </div>
-        </div>
-        <div className="text-center">
-          <p className="text-everest-snow font-heading font-semibold text-lg mb-1">Aula em breve</p>
-          <p className="text-everest-stone text-sm">
-            O vídeo desta aula será disponibilizado em breve
-          </p>
-        </div>
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+        <span className="text-5xl">⛰</span>
+        <p className="text-everest-stone font-semibold">Aula em breve</p>
+        <p className="text-everest-stone text-sm opacity-60">
+          O vídeo desta aula será disponibilizado em breve
+        </p>
       </div>
     </div>
   );

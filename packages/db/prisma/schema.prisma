@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String     @id @default(cuid())
+  name          String?
+  email         String     @unique
+  passwordHash  String
+  isActive      Boolean    @default(false)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  purchases     Purchase[]
+  progress      Progress[]
+  sessions      Session[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Purchase {
+  id              String   @id @default(cuid())
+  userId          String
+  hotmartTxId     String   @unique
+  status          String   // approved | refunded | cancelled
+  plan            String   // monthly | annual
+  purchasedAt     DateTime @default(now())
+  expiresAt       DateTime?
+  user            User     @relation(fields: [userId], references: [id])
+}
+
+model Module {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String
+  emoji       String
+  campLabel   String   // BASE CAMP, CAMP 1, ..., CUME
+  order       Int
+  isPublished Boolean  @default(false)
+  lessons     Lesson[]
+  createdAt   DateTime @default(now())
+}
+
+model Lesson {
+  id          String     @id @default(cuid())
+  moduleId    String
+  title       String
+  slug        String     @unique
+  description String?
+  videoUrl    String?    // URL do embed Panda Video
+  pdfUrl      String?    // URL do PDF para download
+  order       Int
+  isPublished Boolean    @default(false)
+  duration    Int?       // duração em segundos
+  module      Module     @relation(fields: [moduleId], references: [id])
+  progress    Progress[]
+  createdAt   DateTime   @default(now())
+}
+
+model Progress {
+  id          String    @id @default(cuid())
+  userId      String
+  lessonId    String
+  completed   Boolean   @default(false)
+  completedAt DateTime?
+  watchedSecs Int       @default(0)
+  user        User      @relation(fields: [userId], references: [id])
+  lesson      Lesson    @relation(fields: [lessonId], references: [id])
+
+  @@unique([userId, lessonId])
+}

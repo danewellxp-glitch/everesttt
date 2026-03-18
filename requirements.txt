@@ -1,0 +1,82 @@
+# ==============================================================
+# EVEREST PLATFORM — Requirements
+# ==============================================================
+# Este arquivo lista TODOS os requisitos para rodar o projeto.
+# Para instruções passo-a-passo, veja: DEPLOY.md
+# ==============================================================
+
+# ──────────────────────────────────────────────
+# SISTEMA (Ubuntu Server)
+# ──────────────────────────────────────────────
+ubuntu >= 22.04 LTS
+
+# Runtime
+nodejs >= 20.x (LTS)
+npm >= 10.x                  # vem com o Node 20
+
+# Banco de dados
+postgresql >= 15
+
+# Servidor web / proxy reverso
+nginx >= 1.24
+
+# Gerenciador de processos
+pm2 >= 5.x                   # instalado via npm: npm i -g pm2
+
+# Ferramentas auxiliares
+git >= 2.x
+curl
+openssl                      # para gerar NEXTAUTH_SECRET
+
+# ──────────────────────────────────────────────
+# NODE / NPM (instalados automaticamente via npm install)
+# ──────────────────────────────────────────────
+
+# ── Monorepo ──
+turbo@^2.0.0                 # orquestrador de build (Turborepo)
+
+# ── App: area-membros (porta 3001) ──
+next@14.2.0
+react@^18.0.0
+react-dom@^18.0.0
+next-auth@^5.0.0-beta.19
+lucide-react@^0.400.0
+zod@^3.22.0
+resend@^3.2.0
+bcryptjs@^2.4.3
+tailwindcss@^3.4.0
+typescript@^5.0.0
+
+# ── Pacote @everest/db ──
+@prisma/client@^5.0.0
+prisma@^5.0.0                # CLI (devDependency)
+ts-node@^10.0.0              # para seed
+
+# ── App: site-vendas (porta 3000) ──
+# (dependências incluídas no npm install do workspace)
+
+# ──────────────────────────────────────────────
+# VARIÁVEIS DE AMBIENTE NECESSÁRIAS
+# ──────────────────────────────────────────────
+# Copie .env.example → .env e preencha:
+#
+# DATABASE_URL              = postgresql://user:pass@localhost:5432/everest_db
+# NEXTAUTH_SECRET           = (gere: openssl rand -base64 32)
+# NEXTAUTH_URL              = https://membros.seudominio.com.br
+# HOTMART_WEBHOOK_TOKEN     = token secreto configurado na Hotmart
+# HOTMART_PRODUCT_ID        = ID do produto na Hotmart
+# RESEND_API_KEY            = re_xxxxxxxxxxxxxxxxxxxx
+# EMAIL_FROM                = noreply@seudominio.com.br
+# NEXT_PUBLIC_SITE_VENDAS_URL      = https://seudominio.com.br
+# NEXT_PUBLIC_AREA_MEMBROS_URL     = https://membros.seudominio.com.br
+# NEXT_PUBLIC_HOTMART_CHECKOUT_URL = https://pay.hotmart.com/SEU_PRODUTO_ID
+# PANDA_VIDEO_API_KEY       = (opcional)
+
+# ──────────────────────────────────────────────
+# PORTAS UTILIZADAS
+# ──────────────────────────────────────────────
+# 3000  → site-vendas    (Next.js)
+# 3001  → area-membros   (Next.js)
+# 5432  → PostgreSQL
+# 80    → HTTP  (Nginx)
+# 443   → HTTPS (Nginx + Certbot)

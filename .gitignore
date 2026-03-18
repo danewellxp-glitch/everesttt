@@ -1,0 +1,33 @@
+# Ambiente — NUNCA commitar
+.env
+.env.local
+.env.production
+.env.*.local
+apps/**/.env
+apps/**/.env.local
+packages/**/.env
+
+# Build
+.next/
+dist/
+build/
+
+# Dependencies
+node_modules/
+.turbo/
+
+# Banco local
+*.db
+*.sqlite
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/

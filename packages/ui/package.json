@@ -1,0 +1,12 @@
+{
+  "name": "@everest/ui",
+  "version": "0.0.1",
+  "main": "./src/index.ts",
+  "dependencies": {
+    "react": "^18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/react": "^18.0.0"
+  }
+}

@@ -5,6 +5,7 @@ import { ModuleCard } from "@/components/ModuleCard";
 import { ProgressBar } from "@/components/ProgressBar";
 import { AltitudeBadge } from "@/components/AltitudeBadge";
 import Link from "next/link";
+import { PlayCircle, ChevronRight } from "lucide-react";
 
 type ProgressItem = { completed: boolean };
 type LessonItem = { id: string; title: string; slug: string; duration: number | null; pdfUrl: string | null; progress: ProgressItem[] };
@@ -63,37 +64,42 @@ export default async function DashboardPage() {
   return (
     <div className="p-8 max-w-6xl">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="font-heading font-extrabold text-everest-snow text-3xl mb-1">
-          Bem-vindo de volta, {session.user.name?.split(" ")[0]}! ⛰
+      <div className="mb-10">
+        <h1 className="font-heading font-extrabold text-everest-snow text-3xl mb-2 tracking-tight">
+          Bem-vindo de volta, {session.user.name?.split(" ")[0]}
         </h1>
-        <p className="text-everest-stone">Continue sua escalada</p>
+        <div className="flex items-center gap-2 text-everest-stone text-sm">
+          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+          Sua jornada rumo ao topo continua
+        </div>
       </div>
 
       {/* Progresso geral */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         {/* Card progresso */}
-        <div className="col-span-2 p-6 rounded-xl border border-everest-gray bg-everest-dark">
-          <div className="flex items-center justify-between mb-4">
+        <div className="col-span-2 p-8 rounded-2xl border border-everest-gray bg-everest-dark shadow-xl">
+          <div className="flex items-center justify-between mb-6">
             <div>
-              <p className="text-everest-stone text-sm font-medium">
-                Progresso total
+              <p className="text-everest-stone text-xs font-bold uppercase tracking-widest mb-1">
+                Progresso da Escalada
               </p>
-              <p className="font-heading font-bold text-everest-snow text-2xl">
-                {completedLessons} de {totalLessons} aulas
+              <p className="font-heading font-extrabold text-everest-snow text-3xl">
+                {completedLessons} <span className="text-everest-stone text-lg font-normal">/ {totalLessons} aulas</span>
               </p>
             </div>
-            <span className="font-heading font-bold text-everest-gold text-3xl">
-              {progressPercent}%
-            </span>
+            <div className="w-16 h-16 rounded-full border-4 border-everest-gray flex items-center justify-center relative">
+              <span className="font-heading font-bold text-everest-gold text-xl">
+                {progressPercent}%
+              </span>
+            </div>
           </div>
-          <ProgressBar value={completedLessons} max={totalLessons} />
+          <ProgressBar value={completedLessons} max={totalLessons} className="h-2.5" />
         </div>
 
         {/* Badge altitude */}
-        <div className="p-6 rounded-xl border border-everest-gray bg-everest-dark flex flex-col items-center justify-center text-center">
-          <p className="text-everest-stone text-xs font-bold uppercase tracking-wider mb-2">
-            Altitude atual
+        <div className="p-8 rounded-2xl border border-everest-gray bg-everest-dark flex flex-col items-center justify-center text-center shadow-xl">
+          <p className="text-everest-stone text-[10px] font-bold uppercase tracking-[0.2em] mb-4">
+            Altitude Atual
           </p>
           <AltitudeBadge camp={currentCamp} size="lg" />
         </div>
@@ -102,27 +108,33 @@ export default async function DashboardPage() {
       {/* Próxima aula */}
       {nextLesson && (
         <div
-          className="p-6 rounded-xl mb-8"
+          className="p-8 rounded-2xl mb-12 shadow-2xl relative overflow-hidden group"
           style={{
-            border: "1px solid #E03E3E30",
-            background: "linear-gradient(135deg, #1a0a0a 0%, #111318 100%)",
+            border: "1px solid rgba(224, 62, 62, 0.2)",
+            background: "linear-gradient(135deg, #150808 0%, #0D0E12 100%)",
           }}
         >
-          <p className="text-everest-red text-xs font-bold uppercase tracking-widest mb-2">
-            ▶ Continue daqui
-          </p>
-          <h3 className="font-heading font-bold text-everest-snow text-xl mb-1">
-            {nextLesson.title}
-          </h3>
-          <p className="text-everest-stone text-sm mb-4">
-            {nextLesson.moduleTitle}
-          </p>
-          <Link
-            href={`/aula/${nextLesson.slug}`}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-everest-red hover:bg-everest-red-dark text-white font-bold rounded-lg transition-colors duration-200"
-          >
-            Assistir aula
-          </Link>
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-everest-red/10 border border-everest-red/20 text-everest-red text-[10px] font-bold uppercase tracking-widest mb-4">
+              <PlayCircle size={12} />
+              Próximo Passo
+            </div>
+            <h3 className="font-heading font-extrabold text-everest-snow text-2xl mb-2 group-hover:text-everest-red transition-colors">
+              {nextLesson.title}
+            </h3>
+            <p className="text-everest-stone text-sm mb-8 max-w-xl">
+              Módulo: <span className="text-everest-snow/80">{nextLesson.moduleTitle}</span>
+            </p>
+            <Link
+              href={`/aula/${nextLesson.slug}`}
+              className="inline-flex items-center gap-3 px-8 py-4 bg-everest-red hover:bg-everest-red-dark text-white font-bold rounded-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-everest-red/20"
+            >
+              Retomar Estudo
+              <ChevronRight size={18} />
+            </Link>
+          </div>
+          {/* Decorative element */}
+          <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-everest-red/5 blur-[100px] rounded-full" />
         </div>
       )}
 

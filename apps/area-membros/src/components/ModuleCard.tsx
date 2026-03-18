@@ -25,8 +25,10 @@ export function ModuleCard({
 
   return (
     <div className="p-5 rounded-xl border border-everest-gray bg-everest-dark hover:border-everest-stone/30 transition-all duration-200 group">
-      <div className="flex items-start justify-between mb-3">
-        <span className="text-3xl">{emoji}</span>
+      <div className="flex items-start justify-between mb-4">
+        <div className="w-12 h-12 rounded-2xl bg-everest-gray/50 border border-everest-gray flex items-center justify-center text-3xl shadow-inner">
+          <span className="filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">{emoji}</span>
+        </div>
         <AltitudeBadge camp={campLabel} size="sm" />
       </div>
 

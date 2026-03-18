@@ -23,10 +23,15 @@ export function Sidebar({ currentCamp, progressPercent = 0 }: SidebarProps) {
     <aside className="w-64 min-h-screen bg-everest-dark border-r border-everest-gray flex flex-col">
       {/* Logo */}
       <div className="p-6 border-b border-everest-gray">
-        <p className="font-heading font-bold text-xl text-everest-snow">
-          ⛰ EVEREST
-        </p>
-        <p className="text-everest-stone text-xs mt-1">Área de Membros</p>
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-everest-red flex items-center justify-center text-white shadow-lg shadow-everest-red/20">
+            <Mountain size={20} />
+          </div>
+          <p className="font-heading font-bold text-xl text-everest-snow tracking-tight">
+            EVEREST
+          </p>
+        </div>
+        <p className="text-everest-stone text-[10px] uppercase font-bold tracking-widest mt-2 px-1">Área de Membros</p>
       </div>
 
       {/* Nav */}

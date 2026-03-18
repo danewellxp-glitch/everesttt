@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@everest/db";
 import { redirect, notFound } from "next/navigation";
 import Link from "next/link";
-import { ChevronLeft, FileText, ChevronRight } from "lucide-react";
+import { FileText, ChevronRight } from "lucide-react";
 import { LessonPlayer } from "@/components/LessonPlayer";
 import { MarkCompleteButton } from "@/components/MarkCompleteButton";
 

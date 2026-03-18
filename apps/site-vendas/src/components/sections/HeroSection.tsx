@@ -1,6 +1,7 @@
 "use client"
 
 import { CTAButton } from "../CTAButton"
+import { BookOpen, Zap, ShieldCheck, Target, Mountain } from "lucide-react"
 
 export function HeroSection() {
   return (
@@ -20,10 +21,10 @@ export function HeroSection() {
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         {/* Badge */}
         <div
-          className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-bold uppercase tracking-widest mb-10"
-          style={{ background: "#D7C7AB", color: "#101010" }}
+          className="inline-flex items-center gap-2.5 px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-12 shadow-sm"
+          style={{ background: "#D7C7AB", color: "#101010", border: "1px solid rgba(0,0,0,0.05)" }}
         >
-          <span>⛰</span>
+          <Mountain size={14} className="opacity-70" />
           <span>Método EVEREST</span>
         </div>
 
@@ -74,23 +75,25 @@ export function HeroSection() {
         </div>
 
         {/* Cards de pilares */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
           {[
-            { emoji: "📚", label: "Leitura" },
-            { emoji: "🏃", label: "Exercício" },
-            { emoji: "😴", label: "Sono" },
-            { emoji: "🧘", label: "Paz mental" },
-          ].map((item) => (
+            { icon: <BookOpen className="text-ev-red" />, label: "Foco Total" },
+            { icon: <Zap className="text-ev-red" />, label: "Performance" },
+            { icon: <ShieldCheck className="text-ev-red" />, label: "Consistência" },
+            { icon: <Target className="text-ev-red" />, label: "Resultados" },
+          ].map((item, idx) => (
             <div
-              key={item.label}
-              className="flex flex-col items-center gap-3 p-5 rounded-2xl"
+              key={idx}
+              className="flex flex-col items-center gap-4 p-8 rounded-3xl transition-all duration-300 hover:scale-[1.05] hover:shadow-2xl"
               style={{
                 background:  "#FFFFFF",
-                boxShadow:   "0 6px 16px rgba(0,0,0,0.09)",
+                boxShadow:   "0 15px 40px rgba(0,0,0,0.06)",
               }}
             >
-              <span className="text-3xl">{item.emoji}</span>
-              <span className="text-sm font-semibold" style={{ color: "#101010" }}>
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-ev-red/5">
+                {item.icon}
+              </div>
+              <span className="text-sm font-bold uppercase tracking-widest" style={{ color: "#101010" }}>
                 {item.label}
               </span>
             </div>

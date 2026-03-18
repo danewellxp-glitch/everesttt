@@ -1,3 +1,5 @@
+import { CircleAlert } from "lucide-react"
+
 export function DorSection() {
   const cards = [
     { emoji: "🔥", title: "Motivação inicial", desc: "Você começa com energia total" },
@@ -55,7 +57,10 @@ export function DorSection() {
                   →
                 </div>
               )}
-              <div className="text-4xl mb-3">{card.emoji}</div>
+              <div className="w-4/5 h-4/5 bg-white rounded-[40px] flex items-center justify-center shadow-2xl rotate-3 relative overflow-hidden">
+                <div className="absolute inset-0 bg-ev-red/5" />
+                <CircleAlert size={80} className="text-ev-red filter drop-shadow-[0_10px_15px_rgba(249,39,38,0.2)]" />
+              </div>
               <h3 className="font-heading font-bold text-lg mb-2" style={{ color: "#101010" }}>
                 {card.title}
               </h3>
